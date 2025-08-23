@@ -152,7 +152,7 @@ function hideAllSections() {
     document.getElementById('transfer-section').style.display = 'none';
     document.getElementById('bonus-section').style.display = 'none';
     document.getElementById('pay-section').style.display = 'none';
-    document.getElementById('transition-section').style.display = 'none';
+    document.getElementById('transaction-section').style.display = 'none';
 }
 
 document.getElementById('money-card').addEventListener('click', function(){
@@ -177,9 +177,9 @@ document.getElementById('pay-card').addEventListener('click', function(){
     hideAllSections();
     document.getElementById('pay-section').style.display = 'block';
 });
-document.getElementById('transition-card').addEventListener('click', function(){
+document.getElementById('transaction-card').addEventListener('click', function(){
     hideAllSections();
-    document.getElementById('transition-section').style.display = 'block';
+    document.getElementById('transaction-section').style.display = 'block';
 });
 
 
