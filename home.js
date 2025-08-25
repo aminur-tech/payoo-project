@@ -11,8 +11,8 @@ document.getElementById('add-money-btn').addEventListener('click', function (eve
     const bankAccountNumber = document.getElementById('bank-account-number').value;
 
     const availableBalance = parseInt(document.getElementById('available-balance').innerText);
-    
-   
+
+
     if (bankAccountNumber.length < 11) {
         alert('Please provide a valid account number');
         return;
@@ -27,8 +27,8 @@ document.getElementById('add-money-btn').addEventListener('click', function (eve
 
     // transaction data
     const data = {
-        name : 'Add money',
-        date : new Date().toLocaleString()
+        name: 'Add money',
+        date: new Date().toLocaleString()
     }
     transactionData.push(data)
 
@@ -60,69 +60,69 @@ document.getElementById('add-cashout-btn').addEventListener('click', function (e
     const totalAvailableBalance = availableBalance - amount;
     document.getElementById('available-balance').innerText = totalAvailableBalance;
 
-     // transaction data
+    // transaction data
     const data = {
-        name : 'Cash Out',
-        date : new Date().toLocaleString()
+        name: 'Cash Out',
+        date: new Date().toLocaleString()
     }
     transactionData.push(data);
 });
 
 
 // transfer
-document.getElementById('add-transfer-btn').addEventListener('click',function(event){
+document.getElementById('add-transfer-btn').addEventListener('click', function (event) {
     event.preventDefault()
     const pinNumber = parseInt(document.getElementById('transfer-pin').value);
-    const amount = parseInt (document.getElementById('transfer-amount').value);
+    const amount = parseInt(document.getElementById('transfer-amount').value);
     const userAccountNumber = document.getElementById('user-account-number').value;
 
 
-    const availableBalance = parseInt ( document.getElementById('available-balance').innerText)
-    
-    
-    if(userAccountNumber.length < 11){
+    const availableBalance = parseInt(document.getElementById('available-balance').innerText)
+
+
+    if (userAccountNumber.length < 11) {
         alert('please provide valid account number')
         return;
     }
-    if(pinNumber !== validPin){
+    if (pinNumber !== validPin) {
         alert('please provide valid pin number')
         return;
     }
-     if (amount > availableBalance) {
+    if (amount > availableBalance) {
         alert('Insufficient balance!');
         return;
     }
 
     const totalAvailableBalance = availableBalance - amount;
     document.getElementById('available-balance').innerText = totalAvailableBalance;
-     alert('Transfer successful!');
+    alert('Transfer successful!');
 
-      // transaction data
+    // transaction data
     const data = {
-        name : 'Transfer Money',
-        date : new Date().toLocaleString()
+        name: 'Transfer Money',
+        date: new Date().toLocaleString()
     }
     transactionData.push(data)
 })
 
 
 // bonus
-document.getElementById('add-bonus-btn').addEventListener('click', function(event){
+document.getElementById('add-bonus-btn').addEventListener('click', function (event) {
     event.preventDefault();
 
     const coupon = document.getElementById('bonus-coupon').value.trim();
     const availableBalance = parseInt(document.getElementById('available-balance').innerText);
 
-    if(coupon === ""){
+    if (coupon === "") {
         alert('Please enter a coupon code!');
         return;
     }
 
     // Example: fixed bonus for valid coupon
     let bonusAmount = 0;
-    if(coupon === "100"){
+    if (coupon === "100") {
         bonusAmount = 100;
-    } else if(coupon === "500"){
+    } else if (coupon === "500") {
         bonusAmount = 500;
     } else {
         alert('Invalid coupon code!');
@@ -135,56 +135,60 @@ document.getElementById('add-bonus-btn').addEventListener('click', function(even
     alert(`Congratulations! You got $${bonusAmount} bonus.`);
     document.getElementById('bonus-coupon').value = ""; // clear input
 
-     // transaction data
+    // transaction data
     const data = {
-        name : 'Bonus',
-        date : new Date().toLocaleString()
+        name: 'Bonus',
+        date: new Date().toLocaleString()
     }
     transactionData.push(data)
 });
 
 
 // pay
-document.getElementById('add-pay-btn').addEventListener('click',function(event){
+document.getElementById('add-pay-btn').addEventListener('click', function (event) {
     event.preventDefault()
     const pinNumber = parseInt(document.getElementById('bill-pin').value);
-    const amount = parseInt (document.getElementById('bill-amount').value);
+    const amount = parseInt(document.getElementById('bill-amount').value);
     const billerAccountNumber = document.getElementById('biller-account-number').value;
     const bank = document.getElementById('bank-name');
 
-    const availableBalance = parseInt ( document.getElementById('available-balance').innerText)
-    
+    const availableBalance = parseInt(document.getElementById('available-balance').innerText)
 
-    if(billerAccountNumber.length < 11){
+
+    if (billerAccountNumber.length < 11) {
         alert('please provide valid account number')
         return;
     }
-    if(pinNumber !== validPin){
+    if (pinNumber !== validPin) {
         alert('please provide valid pin number')
         return;
     }
 
-    const totalAvailableBalance =  availableBalance - amount;
+    const totalAvailableBalance = availableBalance - amount;
     document.getElementById('available-balance').innerText = totalAvailableBalance;
     alert('Bill pay successful!');
 
-     // transaction data
+    // transaction data
     const data = {
-        name : 'Pay Bill',
-        date : new Date().toLocaleString()
+        name: 'Pay Bill',
+        date: new Date().toLocaleString()
     }
     transactionData.push(data)
 })
 
 
 // transaction 
-document.getElementById('transaction-card').addEventListener('click', function(){
-// console.log(transactionData)
-const transactionSection = document.getElementById('transaction-section')
-transactionSection.innerHTML = "";
-for(const data of transactionData){
-    const div = document.createElement('div')
-    div.innerHTML = `
+document.getElementById('transaction-card').addEventListener('click', function () {
+    // console.log(transactionData)
+    const transactionSection = document.getElementById('transaction-section')
+    transactionSection.innerHTML = "";
+    for (const data of transactionData) {
+        const div = document.createElement('div')
+        div.innerHTML = `
+            <div class="flex justify-between p-2">
+                <h2 class="text-xl font-semibold mb-1">Transaction History</h2>
+                <p class="text-[#08080880]">View All</p>
+            </div>
             <div class="flex justify-between items-center  bg-white rounded-xl p-3">
                 <div class="flex items-center">
                     <img src="./assets/wallet1.png" alt="" class="rounded-full bg-[#f4f5f7] p-3">
@@ -196,8 +200,8 @@ for(const data of transactionData){
                    <i class="fa-solid fa-ellipsis-vertical"></i>
             </div>
     `;
-    transactionSection.appendChild(div);
-}
+        transactionSection.appendChild(div);
+    }
 })
 
 
@@ -207,9 +211,9 @@ for(const data of transactionData){
 function setActiveCard(cardId) {
     const formBtns = document.getElementsByClassName('form-btn');
     for (const btn of formBtns) {
-        btn.classList.remove('border-[#0874f2]', 'bg-[#0874F20D]','border-gray-400','text-[#0874F2]');
+        btn.classList.remove('border-[#0874f2]', 'bg-[#0874F20D]', 'border-gray-400', 'text-[#0874F2]');
     }
-    document.getElementById(cardId).classList.add('border-[#0874f2]', 'bg-[#0874F20D]','text-[#0874F2]');
+    document.getElementById(cardId).classList.add('border-[#0874f2]', 'bg-[#0874F20D]', 'text-[#0874F2]');
 }
 
 //toggling
@@ -222,35 +226,35 @@ function hideAllSections() {
     document.getElementById('transaction-section').style.display = 'none';
 }
 
-document.getElementById('money-card').addEventListener('click', function(){
+document.getElementById('money-card').addEventListener('click', function () {
     hideAllSections();
     document.getElementById('add-money-section').style.display = 'block';
     setActiveCard('money-card');
 });
 
 
-document.getElementById('cashout-card').addEventListener('click', function(){
+document.getElementById('cashout-card').addEventListener('click', function () {
     hideAllSections();
     document.getElementById('cashOut-section').style.display = 'block';
     setActiveCard('cashout-card');
 });
 
-document.getElementById('transfer-card').addEventListener('click', function(){
+document.getElementById('transfer-card').addEventListener('click', function () {
     hideAllSections();
     document.getElementById('transfer-section').style.display = 'block';
     setActiveCard('transfer-card');
 });
-document.getElementById('bonus-card').addEventListener('click', function(){
+document.getElementById('bonus-card').addEventListener('click', function () {
     hideAllSections();
     document.getElementById('bonus-section').style.display = 'block';
     setActiveCard('bonus-card');
 });
-document.getElementById('pay-card').addEventListener('click', function(){
+document.getElementById('pay-card').addEventListener('click', function () {
     hideAllSections();
     document.getElementById('pay-section').style.display = 'block';
     setActiveCard('pay-card');
 });
-document.getElementById('transaction-card').addEventListener('click', function(){
+document.getElementById('transaction-card').addEventListener('click', function () {
     hideAllSections();
     document.getElementById('transaction-section').style.display = 'block';
     setActiveCard('transaction-card');
