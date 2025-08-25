@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-[#f4f5f7]  outfit ">
+<body class="bg-[#f4f5f7] h-full  outfit ">
     <!-- nav section -->
     <nav class="bg-white  max-w-lg m-auto">
         <div class="flex justify-between items-center border-b-1 border-gray-400 p-3">
@@ -36,7 +36,7 @@
     </nav>
 
     <!-- main section -->
-    <main>
+    <main class="min-h-screen">
         <section class=" max-w-lg m-auto bg-white p-5 rounded-b-xl">
             <h1 class="text-2xl font-bold mb-1 mt-1">🔥 Welcome to Payooo!</h1>
             <p class="text-[#080808] opacity-50">Enjoy easy and convenient financial services with us. <br> Cashout
@@ -44,27 +44,27 @@
 
             <!-- card section -->
             <div class="grid grid-cols-3 gap-2 mt-1">
-                <div class="border-2 border-gray-400 text-center rounded-xl p-3 " id="money-card">
+                <div class="form-btn border-2 border-gray-400 text-center rounded-xl p-3 " id="money-card">
                     <img src="./assets/wallet1.png" alt="" class="mx-auto">
                     <h2>Add Money</h2>
                 </div>
-                <div class="border-2 border-gray-400 text-center rounded-xl p-3" id="cashout-card">
+                <div class="form-btn border-2 border-gray-400 text-center rounded-xl p-3" id="cashout-card">
                     <img src="./assets/send1.png" alt="" class="mx-auto">
                     <h2>Cashout</h2>
                 </div>
-                <div class="border-2 border-gray-400 text-center rounded-xl p-3 " id="transfer-card">
+                <div class="form-btn border-2 border-gray-400 text-center rounded-xl p-3 " id="transfer-card">
                     <img src="./assets/money1.png" alt="" class="mx-auto">
                     <h2>Transfer Money</h2>
                 </div>
-                <div class="border-2 border-gray-400 text-center rounded-xl p-3" id="bonus-card">
+                <div class="form-btn border-2 border-gray-400 text-center rounded-xl p-3" id="bonus-card">
                     <img src="./assets/bonus1.png" class="mx-auto">
                     <h2>Get Bonus</h2>
                 </div>
-                <div class="border-2 border-gray-400 text-center rounded-xl p-3" id="pay-card">
+                <div class="form-btn border-2 border-gray-400 text-center rounded-xl p-3" id="pay-card">
                     <img src="./assets/purse1.png" alt="" class="mx-auto">
                     <h2>Pay Bill</h2>
                 </div>
-                <div class="border-2 border-gray-400 text-center rounded-xl p-3 " id="transaction-card">
+                <div class="form-btn border-2 border-gray-400 text-center rounded-xl p-3 " id="transaction-card">
                     <img src="./assets/transaction1.png" alt="" class="mx-auto">
                     <h2>Transactions</h2>
                 </div>
@@ -203,7 +203,10 @@
 
         <!-- Transactions section -->
         <section class="w-lg mt-2 mx-auto" id="transaction-section" style="display: none;">
-            <h2 class="text-xl font-semibold mb-1">Transitions</h2>
+            <div class="flex justify-between">
+                <h2 class="text-xl font-semibold mb-1">Transaction History</h2>
+                <p class="text-[#08080880]">View All</p>
+            </div>
         </section>
 
     </main>

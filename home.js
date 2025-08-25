@@ -1,6 +1,7 @@
 
 // add money
 const validPin = 1234;
+const transactionData = [];
 
 // Add Money
 document.getElementById('add-money-btn').addEventListener('click', function (event) {
@@ -23,6 +24,14 @@ document.getElementById('add-money-btn').addEventListener('click', function (eve
 
     const totalAvailableBalance = amount + availableBalance;
     document.getElementById('available-balance').innerText = totalAvailableBalance;
+
+    // transaction data
+    const data = {
+        name : 'Add money',
+        date : new Date().toLocaleString()
+    }
+    transactionData.push(data)
+
 });
 
 
@@ -50,6 +59,13 @@ document.getElementById('add-cashout-btn').addEventListener('click', function (e
 
     const totalAvailableBalance = availableBalance - amount;
     document.getElementById('available-balance').innerText = totalAvailableBalance;
+
+     // transaction data
+    const data = {
+        name : 'Cash Out',
+        date : new Date().toLocaleString()
+    }
+    transactionData.push(data);
 });
 
 
@@ -80,6 +96,13 @@ document.getElementById('add-transfer-btn').addEventListener('click',function(ev
     const totalAvailableBalance = availableBalance - amount;
     document.getElementById('available-balance').innerText = totalAvailableBalance;
      alert('Transfer successful!');
+
+      // transaction data
+    const data = {
+        name : 'Transfer Money',
+        date : new Date().toLocaleString()
+    }
+    transactionData.push(data)
 })
 
 
@@ -111,6 +134,13 @@ document.getElementById('add-bonus-btn').addEventListener('click', function(even
 
     alert(`Congratulations! You got $${bonusAmount} bonus.`);
     document.getElementById('bonus-coupon').value = ""; // clear input
+
+     // transaction data
+    const data = {
+        name : 'Bonus',
+        date : new Date().toLocaleString()
+    }
+    transactionData.push(data)
 });
 
 
@@ -137,13 +167,50 @@ document.getElementById('add-pay-btn').addEventListener('click',function(event){
     const totalAvailableBalance =  availableBalance - amount;
     document.getElementById('available-balance').innerText = totalAvailableBalance;
     alert('Bill pay successful!');
+
+     // transaction data
+    const data = {
+        name : 'Pay Bill',
+        date : new Date().toLocaleString()
+    }
+    transactionData.push(data)
 })
 
-// 
+
+// transaction 
+document.getElementById('transaction-card').addEventListener('click', function(){
+// console.log(transactionData)
+const transactionSection = document.getElementById('transaction-section')
+transactionSection.innerHTML = "";
+for(const data of transactionData){
+    const div = document.createElement('div')
+    div.innerHTML = `
+            <div class="flex justify-between items-center  bg-white rounded-xl p-3">
+                <div class="flex items-center">
+                    <img src="./assets/wallet1.png" alt="" class="rounded-full bg-[#f4f5f7] p-3">
+                    <div class="ml-3">
+                        <h2>${data.name}</h2>
+                        <p>${data.date}</p>
+                    </div>
+                </div>
+                   <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+    `;
+    transactionSection.appendChild(div);
+}
+})
 
 
 
 
+// Active card
+function setActiveCard(cardId) {
+    const formBtns = document.getElementsByClassName('form-btn');
+    for (const btn of formBtns) {
+        btn.classList.remove('border-[#0874f2]', 'bg-[#0874F20D]','border-gray-400','text-[#0874F2]');
+    }
+    document.getElementById(cardId).classList.add('border-[#0874f2]', 'bg-[#0874F20D]','text-[#0874F2]');
+}
 
 //toggling
 function hideAllSections() {
@@ -158,28 +225,35 @@ function hideAllSections() {
 document.getElementById('money-card').addEventListener('click', function(){
     hideAllSections();
     document.getElementById('add-money-section').style.display = 'block';
+    setActiveCard('money-card');
 });
+
 
 document.getElementById('cashout-card').addEventListener('click', function(){
     hideAllSections();
     document.getElementById('cashOut-section').style.display = 'block';
+    setActiveCard('cashout-card');
 });
 
 document.getElementById('transfer-card').addEventListener('click', function(){
     hideAllSections();
     document.getElementById('transfer-section').style.display = 'block';
+    setActiveCard('transfer-card');
 });
 document.getElementById('bonus-card').addEventListener('click', function(){
     hideAllSections();
     document.getElementById('bonus-section').style.display = 'block';
+    setActiveCard('bonus-card');
 });
 document.getElementById('pay-card').addEventListener('click', function(){
     hideAllSections();
     document.getElementById('pay-section').style.display = 'block';
+    setActiveCard('pay-card');
 });
 document.getElementById('transaction-card').addEventListener('click', function(){
     hideAllSections();
     document.getElementById('transaction-section').style.display = 'block';
+    setActiveCard('transaction-card');
 });
 
 
